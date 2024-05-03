@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Details</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .priority-high {
+            color: red;
+        }
+
+        .priority-medium {
+            color: orange;
+        }
+
+        .priority-low {
+            color: green;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
+    <div class="card mb-2">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 th:text="${task.title}"></h5>
+            <div class="text-right">
+                <span th:text="${task.priority}" th:if="${task.priority.toString().equals('HIGH')}" th:classappend="priority-high"></span>
+                <span th:text="${task.priority}" th:if="${task.priority.toString().equals('MEDIUM')}" th:classappend="priority-medium"></span>
+                <span th:text="${task.priority}" th:if="${task.priority.toString().equals('LOW')}" th:classappend="priority-low"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Due</p>
+                    <p><strong th:text="${task.date}"></strong></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Description</p>
+                    <p class="card-text mb-0" th:text="${task.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <a href="/" class="btn btn-primary">Go to Main Page</a>
+    </div>
+</div>
+<!-- Add Bootstrap JS and its dependencies jQuery and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Tasks Page</title>-->
+<!--    &lt;!&ndash; Add Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">-->
+<!--    <style>-->
+<!--        .priority-high {-->
+<!--            color: red;-->
+<!--        }-->
+
+<!--        .priority-medium {-->
+<!--            color: orange;-->
+<!--        }-->
+
+<!--        .priority-low {-->
+<!--            color: green;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <div class="text-left mb-3">-->
+<!--        <h1>Tasks</h1>-->
+<!--        <h4>Manage your tasks</h4>-->
+<!--    </div>-->
+<!--    <div class="d-flex justify-content-between align-items-center mb-2">-->
+<!--        <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/tasks/create}'|">New Task</button>-->
+<!--        <form class="form-inline my-2 my-lg-0">-->
+<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search tasks..." aria-label="Search">-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div th:each="task : ${tasks}" class="mb-2">-->
+<!--        <div class="card">-->
+<!--            <div class="card-header d-flex justify-content-between align-items-center">-->
+<!--                <h5 th:text="${task.title}"></h5>-->
+<!--                <div class="text-right">-->
+<!--                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('HIGH')}" th:classappend="priority-high"></span>-->
+<!--                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('MEDIUM')}" th:classappend="priority-medium"></span>-->
+<!--                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('LOW')}" th:classappend="priority-low"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <p>Due</p>-->
+<!--                        <p><strong th:text="${task.date}"></strong></p>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <p>Description</p>-->
+<!--                        <p class="card-text mb-0" th:text="${task.description}"></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <a href="#" class="btn btn-primary">Edit</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="#" class="btn btn-danger">Delete</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Add Bootstrap JS and its dependencies jQuery and Popper.js &ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .priority-high {
+            color: red;
+        }
+
+        .priority-medium {
+            color: orange;
+        }
+
+        .priority-low {
+            color: green;
+        }
+
+        .title-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="text-left mb-3">
+        <h1>Tasks</h1>
+        <h4>Manage your tasks</h4>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/tasks/create}'|">New Task</button>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search tasks..." aria-label="Search">
+        </form>
+    </div>
+    <div th:each="task : ${tasks}" class="mb-2">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <a th:href="@{'/tasks/' + ${task.id}}" class="title-link">
+                    <h5 th:text="${task.title}"></h5>
+                </a>
+                <div class="text-right">
+                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('HIGH')}" th:classappend="priority-high"></span>
+                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('MEDIUM')}" th:classappend="priority-medium"></span>
+                    <span th:text="${task.priority}" th:if="${task.priority.toString().equals('LOW')}" th:classappend="priority-low"></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Due</p>
+                        <p><strong th:text="${task.date}"></strong></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Description</p>
+                        <p class="card-text mb-0" th:text="${task.description}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Bootstrap JS and its dependencies jQuery and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
